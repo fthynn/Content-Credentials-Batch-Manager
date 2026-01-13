@@ -31,8 +31,8 @@ CCM, dijital içerik dosyalarına (JPG, PNG, WebP, TIFF) **C2PA/CAI Content Cred
 
 ```bash
 # Clone
-git clone https://github.com/SonraArt/content-credentials-batch-manager.git
-cd content-credentials-batch-manager
+git clone https://github.com/fthynn/Content-Credentials-Batch-Manager.git
+cd Content-Credentials-Batch-Manager
 
 # Install
 npm install
