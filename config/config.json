@@ -1,0 +1,10 @@
+{
+  "inputDir": "D:/SonraART/Collections",
+  "outputDir": "D:/SonraART/Collections_Signed",
+  "author": "Fatih Yenen",
+  "brand": "Sonra Art",
+  "license": "CC BY-NC 4.0",
+  "signMode": "batch",
+  "timestamp": true,
+  "hashAlgo": "SHA256"
+}

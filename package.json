@@ -1,0 +1,59 @@
+{
+  "name": "content-credentials-batch-manager",
+  "version": "1.0.0",
+  "description": "C2PA/CAI Content Credentials batch processing tool for digital content authenticity",
+  "main": "dist/cli.js",
+  "bin": {
+    "ccm": "./dist/cli.js"
+  },
+  "scripts": {
+    "start": "ts-node src/cli.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/cli.ts",
+    "worker": "node src/queueWorker.js",
+    "test": "echo \"Tests coming soon\" && exit 0"
+  },
+  "keywords": [
+    "c2pa",
+    "cai",
+    "content-credentials",
+    "content-authenticity",
+    "digital-provenance",
+    "metadata",
+    "batch-processing",
+    "ai-training",
+    "copyright"
+  ],
+  "author": {
+    "name": "Fatih YENEN",
+    "email": "research@sonra.art",
+    "url": "https://sonra.art"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SonraArt/content-credentials-batch-manager"
+  },
+  "homepage": "https://github.com/SonraArt/content-credentials-batch-manager#readme",
+  "bugs": {
+    "url": "https://github.com/SonraArt/content-credentials-batch-manager/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@types/commander": "^2.12.0",
+    "bull": "^4.16.5",
+    "commander": "^14.0.1",
+    "fast-glob": "^3.3.3",
+    "ioredis": "^5.8.0",
+    "yargs": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/yargs": "^17.0.33",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  }
+}

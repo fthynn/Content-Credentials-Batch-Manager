@@ -1,0 +1,13 @@
+{
+    "creator": {
+        "name": "Fatih YENEN / SonRa Art", 
+        "site": "[https://sonra.art](https://sonra.art)",
+        "social": {
+            "ig": "@fthynn"
+        }
+    },
+    "license": "Ticari kullanım izne tabidir (sonraart@gmail.com)",
+    "ai_training": "disallow",
+    "toolchain": ["Adobe Photoshop", "Stable Diffusion"],
+    "locale": "tr-TR"
+}

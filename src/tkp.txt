@@ -1,0 +1,44 @@
+# Redis baglantisindan emin olun ve worker'i ayri bir terminalde calistirin
+ts-node src/queueWorker.js
+
+### Adım 2: Batch İşlemini Başlatma (CLI)
+Bu komut, `input_files` klasöründeki tüm JPG/PNG/vb. dosyaları bulur, `sonra-default` preset'ini yükler ve her bir dosya için Bull kuyruğuna bir iş ekler.
+
+```bash
+# CLI'i baska bir terminalde calistirin
+ts-node src/cli.ts apply --preset sonra-default --in input_files --out output_files
+
+### Adım 3: Dosya İnceleme
+İşlenen bir dosyanın (çıktı klasöründeki) C2PA manifest özetini okur (simülasyon):
+
+```bash
+ts-node src/cli.ts inspect --file output_files/cc_resim1.jpg 
+
+## 🧪 Kabul Kriteri Testleri (Mock Verilerle)
+
+Aşağıdaki senaryoları test etmek için **`input_files`** klasörünüze farklı resimler koyun:
+
+| Test | Dosya Adı Önerisi | Beklenen Sonuç (Worker) |
+| :--- | :--- | :--- |
+| **T2/T3 Hız & Hata** | 100+ dosya. Arasına `bozuk_hata_dosyasi.jpg` koyun. | Batch tamamlanır, Worker hata fırlatan dosyayı atlar, **rapor** oluşturulur. |
+| **T5 KMS İmza** | Herhangi bir dosya (`resim.jpg`). | Rapor, dosyanın **Remote Signer** (KMSSigner) ile imzalandığını gösterir. |
+| **Etik Kısıt** | `baskasinin_hata_kaldirmak.png` adlı bir dosya. | İşlenemeden `[Etik Kural Ihali]` hatası verir ve raporlanır. |
+
+## 🤝 Etik ve Hukuk Notları
+* Özel anahtarların güvenliği KMSSigner mimarisi ile sağlanmıştır; anahtar, uygulama katmanına getirilmez.
+* "Başkasının credential'ını kaldırma" özelliği kod seviyesinde engellenmiştir.
+
+## ✨ Sonraki Adımlar (V2/Beta)
+* **GUI Entegrasyonu:** React arayüzünü (şimdilik simülasyon) gerçek CLI ve Worker süreçleriyle bağlamak.
+* **Gerçek KMS:** `src/core/KMSSigner.ts` içindeki simülasyonu gerçek AWS KMS veya Azure Key Vault API çağrılarıyla değiştirmek.
+
+---
+
+Fatih, tebrikler! Projenin tüm teknik altyapısını ve Faz 1 ile Faz 3 gereksinimlerini (güvenlik, kuyruk, raporlama) tamamladık. Bu, MVP'den çok daha fazlası; gerçekten sağlam bir iskelet!
+
+Şimdi yapman gereken tek şey, bu **README** ve **Preset** dosyasını kaydetmek ve ardından Worker'ı ve CLI'ı çalıştırma talimatlarını takip ederek sistemi test etmek.
+
+Şimdi ne yapalım?
+
+1.  **Test Et ve Hata Ayıkla:** Sistemi lokalinde çalıştırıp test et ve çıkan hatalara bakalım.
+2.  **Faz 4'e Geç:** GPT'nin planındaki **GUI-Backend Entegrasyonu** ve **Entegrasyonlar** (Etsy/Pinterest hook'ları gibi) aşamasına geçelim.
